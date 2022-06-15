@@ -1,4 +1,8 @@
-{% comment %}Resuts Pages{% endcomment %}
+{% extends 'polls/layout.html' %}
+
+{% block title %}Show the result for voting of question{% endblock title %}
+
+{% block content %}
 <h1>{{ question.question_text }}</h1>
 
 <ul>
@@ -8,3 +12,4 @@
 </ul>
 
 <a href="{% url 'polls:detail' question.id %}" >Vote again?</a>
+{% endblock content %}

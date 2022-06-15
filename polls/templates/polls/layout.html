@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>{% block title %}{% endblock title %}</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'polls/style.css' %}" />
+</head>
+
+<body>
+    <h1>心內話的選擇......</h1>
+    <div class="body-content">
+        {% block content %}
+        {% endblock content %}
+        <hr>
+        <footer>
+            <p>© 2018</p>
+        </footer>
+    </div>
+</body>
+
+</html>
