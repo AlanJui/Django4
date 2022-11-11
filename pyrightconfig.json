@@ -1,19 +1,26 @@
 {
-    "venvPath": "/Users/alanjui/.pyenv/versions/3.10.0/envs",
-    "venv": "django-4.0",
-    "exclude": [
-        "**/node_modules",
-        "**/__pycache__"
-    ],
-    "reportUnusedVariable": false,
-    "reportUnusedFunction": false,
-    "reportUnusedImport": true,
-    "reportMissingImports": true,
-    "reportMissingTypeStubs": "warning",
-    "reportOptionalMemberAccess": false,
-    "reportGeneralTypeIssues": "warning",
-    "stubPath": "typings",
-    "typeshedPaths": [],
-    "typeCheckingMode": "basic",
-    "useLibraryCodeForTypes": true
+  "pythonPlatform": "Darwin",
+  // "pythonPlatform": "Linux",
+  "pythonVersion": "3.10",
+  "venvPath": "/Users/alanjui/.pyenv/versions/3.10.0/envs",
+  "venv": "django-4.0",
+  "exclude": [
+    "**/node_modules",
+    "**/__pycache__"
+  ],
+  "ignore": [
+    "**/node_modules",
+    "**/__pycache__"
+  ],
+  "reportMissingImports": true,
+  "reportUnusedImport": true,
+  "reportUnusedVariable": false,
+  "reportUnusedFunction": true,
+  "reportMissingTypeStubs": false,
+  "stubPath": "typings",
+  "typeCheckingMode": "off",
+  "reportOptionalMemberAccess": false,
+  "reportGeneralTypeIssues": "warning",
+  "typeshedPaths": [],
+  "useLibraryCodeForTypes": true
 }

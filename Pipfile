@@ -5,16 +5,17 @@ name = "pypi"
 
 [packages]
 django = "*"
-djhtml = "*"
-djlint = "*"
-flake8 = "*"
-isort = "*"
-mypy = "*"
-pylint = "*"
-pylint-django = "*"
-autopep8 = "*"
 
 [dev-packages]
+pylint-django = "*"
+flake8 = "*"
+mypy = "*"
+django-stubs = "*"
+autopep8 = "*"
+isort = "*"
+djlint = "*"
+djhtml = "*"
+django-types = "*"
 
 [requires]
 python_version = "3.10"
