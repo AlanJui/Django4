@@ -1,8 +1,7 @@
 {
   "pythonPlatform": "Darwin",
-  // "pythonPlatform": "Linux",
   "pythonVersion": "3.10",
-  "venvPath": "/Users/alanjui/.pyenv/versions/3.10.0/envs",
+  "venvPath": "$HOME/alanjui/.pyenv/versions",
   "venv": "django-4.0",
   "exclude": [
     "**/node_modules",
@@ -12,15 +11,15 @@
     "**/node_modules",
     "**/__pycache__"
   ],
-  "reportMissingImports": true,
-  "reportUnusedImport": true,
   "reportUnusedVariable": false,
-  "reportUnusedFunction": true,
-  "reportMissingTypeStubs": false,
-  "stubPath": "typings",
-  "typeCheckingMode": "off",
+  "reportUnusedFunction": false,
+  "reportUnusedImport": true,
+  "reportMissingImports": true,
+  "reportMissingTypeStubs": "strict",
   "reportOptionalMemberAccess": false,
   "reportGeneralTypeIssues": "warning",
+  "stubPath": "typings",
   "typeshedPaths": [],
+  "typeCheckingMode": "basic",
   "useLibraryCodeForTypes": true
 }
