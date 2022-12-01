@@ -79,8 +79,8 @@ venvPath = "/Users/alanjui/.pyenv/versions"
 exclude = [
     "**/node_modules",
     "**/__pycache__",
-    "src/typestubs"
     "src/experimental",
+    "src/typestubs"
 ]
 defineConstant = { DEBUG = true }
 
@@ -176,7 +176,14 @@ per-file-ignores = [
 ]
 max-line-length = 88
 count = true
-exclude = .git,__pycache__,docs/source/conf.py,old,build,dist
+exclude = """
+  .git,
+  __pycache__,
+  docs/source/conf.py,
+  old,
+  build,
+  dist
+""""
 max-complexity = 10
 
 # --------------------------------------------------------------- mypy
@@ -186,7 +193,9 @@ max-complexity = 10
 #     'two\.pyi$',  # but TOML's single-quoted strings do not
 #     '^three\.',
 # ]
-plugins = mypy_django_plugin.main
+plugins = [
+  "mypy_django_plugin.main"
+]
 
 [tool.mypy.plugins.django-stubs]
 django_settings_module = "mysite.settings"
