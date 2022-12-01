@@ -1,0 +1,192 @@
+[tool.poetry]
+name = "django-v4"
+version = "0.1.0"
+description = "Django V4 + poetry 專案模版"
+authors = ["Alan Jui <alanjui.1960@gmail.com>"]
+readme = "README.md"
+packages = [{include = "django_v4"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+asgiref = "3.5.2"
+certifi = "2022.9.24"
+charset-normalizer = "2.1.1"
+click = "8.1.3"
+colorama = "0.4.6"
+cssbeautifier = "1.14.7"
+dill = "0.3.6"
+distlib = "0.3.6"
+django = "4.1.3"
+django-stubs = "1.13.0"
+django-stubs-ext = "0.7.0"
+django-types = "0.16.0"
+editorconfig = "0.12.3"
+filelock = "3.8.0"
+greenlet = "2.0.1"
+html-tag-names = "0.1.2"
+html-void-elements = "0.1.0"
+importlib-metadata = "5.0.0"
+jsbeautifier = "1.14.7"
+lazy-object-proxy = "1.8.0"
+mccabe = "0.7.0"
+msgpack = "1.0.4"
+mypy-extensions = "0.4.3"
+pathspec = "0.10.1"
+pipenv = "2022.11.5"
+platformdirs = "2.5.3"
+pylint-plugin-utils = "0.7"
+pyyaml = "6.0"
+regex = "2022.10.31"
+six = "1.16.0"
+sqlparse = "0.4.3"
+tomli = "2.0.1"
+tomlkit = "0.11.6"
+tqdm = "4.64.1"
+types-pytz = "2022.6.0.1"
+types-pyyaml = "6.0.12.2"
+typing-extensions = "4.4.0"
+virtualenv = "20.16.6"
+virtualenv-clone = "0.5.7"
+wrapt = "1.14.1"
+zipp = "3.10.0"
+
+
+[tool.poetry.group.dev.dependencies]
+pylint = "^2.15.7"
+pylint-django = "^2.5.3"
+djhtml = "^1.5.2"
+djlint = "^1.19.7"
+isort = "^5.10.1"
+flake8 = "^6.0.0"
+mypy = "^0.991"
+pycodestyle = "^2.10.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[virtualenvs]
+in-project = false
+
+# --------------------------------------------------------------- pyright
+[tool.pyright]
+pythonPlatform = "Darwin"
+pythonVersion = "3.10"
+venv = "django-v4.0"
+venvPath = "/Users/alanjui/.pyenv/versions"
+
+# include = ["src"]
+exclude = [
+    "**/node_modules",
+    "**/__pycache__",
+    "src/typestubs"
+    "src/experimental",
+]
+defineConstant = { DEBUG = true }
+
+reportMissingImports = true
+reportMissingTypeStubs = false
+
+# executionEnvironments = [
+#   { root = "src/web", pythonVersion = "3.5", pythonPlatform = "Windows", extraPaths = [ "src/service_libs" ] },
+#   { root = "src/sdk", pythonVersion = "3.0", extraPaths = [ "src/backend" ] },
+#   { root = "src/tests", extraPaths = ["src/tests/e2e", "src/sdk" ]},
+#   { root = "src" }
+# ]
+# ignore = ["src/oldstuff"]
+# stubPath = "src/stubs"
+
+# --------------------------------------------------------------- pylint
+# Pylint code checker configuration.
+# - Pylint docs:
+#   https://pylint.readthedocs.io/en/latest/
+# - Configuration reference:
+#   http://pylint.pycqa.org/en/latest/technical_reference/features.html
+
+[tool.pylint.MASTER]
+# Python code to execute, usually for sys.path manipulation such as
+# pygtk.require().
+init-hook="import sys; import os; from pylint.config import find_pylintrc; sys.path.append(os.path.dirname(find_pylintrc()))"
+# Work in parallel.
+# Parallel work disabled due to a bug in the pylint-django:
+# https://github.com/PyCQA/pylint-django/issues/276
+#jobs = "0"
+jobs = "1"
+load-plugins = "pylint_django"
+
+# Do not store results of previous runs.
+persistent = "no"
+# Allow to load C extension modules.
+unsafe-load-any-extension = "yes"
+
+[tool.pylint."MESSAGES CONTROL"]
+enable = "c-extension-no-member"
+disable = [
+  "bare-except",
+  "no-member",
+  "unused-variable",
+  "broad-except",
+  "line-too-long",
+  "consider-using-f-string",
+  "missing-module-docstring",
+  "missing-docstring"
+]
+
+[tool.pylint.BASIC]
+# It is OK to have 2-letters identifiers, e.g. 'id' or 'ok'. Also allow
+# long identifiers, cause there is a strong line length limitation which
+# will force engineers to thing twice before giving too long names.
+argument-rgx = "[a-z_][a-z0-9_]{1,64}$"
+attr-rgx = "[a-z_][a-z0-9_]{1,64}$"
+bad-names = "foo,bar,baz,toto,tutu,tata,responce,pathes"
+class-attribute-rgx = "([A-Za-z_][A-Za-z0-9_]{1,64}|(__.*__))$"
+function-rgx = "[a-z_][a-z0-9_]{1,64}$"
+good-names = "i,j,k,ex,Run,_"
+method-rgx = "[a-z_][a-z0-9_]{1,64}$"
+# Docstrings are needed everywhere.
+no-docstring-rgx = "^$"
+variable-rgx = "[a-z_][a-z0-9_]{1,64}$"
+
+[tool.pylint.FORMAT]
+max-line-length="88"
+max-module-lines="9000" # Right, over nine thousand!
+# [tool.pylint.PYLINT_DJANGO]
+# # NOTE: When Pytest runs Pylint this setting is overwritten by the
+# # environment variable `DJANGO_SETTINGS_MODULE` set by `pytest-django`.
+# # Anyway, the setting is still useful when VS Code runs Pylint directly.
+django-settings-module = "mysite.settings"
+
+[tool.pylint.REFACTORING]
+# We have line length 88, no need to check.
+max-nested-blocks = "9000"
+
+# [tool.pylint.REPORTS]
+# reports = "no"
+# score = "no"
+
+# --------------------------------------------------------------- flake8
+[tool.flake8]
+ignore = [
+  'E231',
+  'E241',
+  'E501'
+]
+per-file-ignores = [
+    '__init__.py:F401',
+]
+max-line-length = 88
+count = true
+exclude = .git,__pycache__,docs/source/conf.py,old,build,dist
+max-complexity = 10
+
+# --------------------------------------------------------------- mypy
+[tool.mypy]
+# exclude = [
+#     "^one\\.py$",  # TOML's double-quoted strings require escaping backslashes
+#     'two\.pyi$',  # but TOML's single-quoted strings do not
+#     '^three\.',
+# ]
+plugins = mypy_django_plugin.main
+
+[tool.mypy.plugins.django-stubs]
+django_settings_module = "mysite.settings"
