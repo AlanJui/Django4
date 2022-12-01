@@ -18,7 +18,6 @@ dill = "0.3.6"
 distlib = "0.3.6"
 django = "4.1.3"
 django-stubs = "1.13.0"
-django-stubs-ext = "0.7.0"
 django-types = "0.16.0"
 editorconfig = "0.12.3"
 filelock = "3.8.0"
@@ -60,6 +59,9 @@ isort = "^5.10.1"
 flake8 = "^6.0.0"
 mypy = "^0.991"
 pycodestyle = "^2.10.0"
+django-stubs = "^1.13.0"
+django-stubs-ext = "^0.7.0"
+flake8-pyproject = "^1.2.1"
 
 [build-system]
 requires = ["poetry-core"]
@@ -106,13 +108,14 @@ reportMissingTypeStubs = false
 [tool.pylint.MASTER]
 # Python code to execute, usually for sys.path manipulation such as
 # pygtk.require().
-init-hook="import sys; import os; from pylint.config import find_pylintrc; sys.path.append(os.path.dirname(find_pylintrc()))"
 # Work in parallel.
 # Parallel work disabled due to a bug in the pylint-django:
 # https://github.com/PyCQA/pylint-django/issues/276
 #jobs = "0"
 jobs = "1"
 load-plugins = "pylint_django"
+# init-hook="import sys; import os; from pylint.config import find_pylintrc; sys.path.append(os.path.dirname(find_pylintrc()))"
+init-hook = "import os.path; project_root_dir = os.path.dirname(os.path.realpath('./pyproject.toml')); sys.path.append(project_root_dir)"
 
 # Do not store results of previous runs.
 persistent = "no"
@@ -150,31 +153,35 @@ variable-rgx = "[a-z_][a-z0-9_]{1,64}$"
 [tool.pylint.FORMAT]
 max-line-length="88"
 max-module-lines="9000" # Right, over nine thousand!
-# [tool.pylint.PYLINT_DJANGO]
-# # NOTE: When Pytest runs Pylint this setting is overwritten by the
-# # environment variable `DJANGO_SETTINGS_MODULE` set by `pytest-django`.
-# # Anyway, the setting is still useful when VS Code runs Pylint directly.
+
+[tool.pylint.PYLINT_DJANGO]
+# NOTE: When Pytest runs Pylint this setting is overwritten by the
+# environment variable `DJANGO_SETTINGS_MODULE` set by `pytest-django`.
+# Anyway, the setting is still useful when VS Code runs Pylint directly.
 django-settings-module = "mysite.settings"
+
 
 [tool.pylint.REFACTORING]
 # We have line length 88, no need to check.
 max-nested-blocks = "9000"
 
-# [tool.pylint.REPORTS]
-# reports = "no"
-# score = "no"
+[tool.pylint.REPORTS]
+reports = "no"
+score = "no"
 
 # --------------------------------------------------------------- flake8
+# Flake8-pyproject
+# Flake8 plug-in loading the configuration from pyproject.toml.
+# Document reference: https://pypi.org/project/Flake8-pyproject/
 [tool.flake8]
 ignore = [
-  'E231',
-  'E241',
   'E501'
 ]
 per-file-ignores = [
     '__init__.py:F401',
 ]
 max-line-length = 88
+max-complexity = 10
 count = true
 exclude = """
   .git,
@@ -184,9 +191,9 @@ exclude = """
   build,
   dist
 """"
-max-complexity = 10
 
-# --------------------------------------------------------------- mypy
+# --------------------------------------------------------------- mypyk
+# Document reference:
 [tool.mypy]
 # exclude = [
 #     "^one\\.py$",  # TOML's double-quoted strings require escaping backslashes
@@ -197,5 +204,5 @@ plugins = [
   "mypy_django_plugin.main"
 ]
 
-[tool.mypy.plugins.django-stubs]
+[tool.django-stubs]
 django_settings_module = "mysite.settings"
