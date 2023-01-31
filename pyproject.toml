@@ -17,8 +17,6 @@ cssbeautifier = "1.14.7"
 dill = "0.3.6"
 distlib = "0.3.6"
 django = "4.1.3"
-django-stubs = "1.13.0"
-django-types = "0.16.0"
 editorconfig = "0.12.3"
 filelock = "3.8.0"
 greenlet = "2.0.1"
@@ -59,9 +57,11 @@ isort = "^5.10.1"
 flake8 = "^6.0.0"
 mypy = "^0.991"
 pycodestyle = "^2.10.0"
-django-stubs = "^1.13.0"
-django-stubs-ext = "^0.7.0"
 flake8-pyproject = "^1.2.1"
+autopep8 = "^2.0.0"
+django-types = "^0.16.0"
+django-stubs = "^1.14.0"
+django-stubs-ext = "^0.7.0"
 
 [build-system]
 requires = ["poetry-core"]
@@ -74,7 +74,7 @@ in-project = false
 [tool.pyright]
 pythonPlatform = "Darwin"
 pythonVersion = "3.10"
-venv = "django-v4.0"
+venv = "django-v4"
 venvPath = "/Users/alanjui/.pyenv/versions"
 
 # include = ["src"]
@@ -200,9 +200,10 @@ exclude = """
 #     'two\.pyi$',  # but TOML's single-quoted strings do not
 #     '^three\.',
 # ]
-plugins = [
-  "mypy_django_plugin.main"
-]
+# plugins = [
+#   "mypy_django_plugin.main"
+# ]
+plugins = []
 
 [tool.django-stubs]
 django_settings_module = "mysite.settings"
